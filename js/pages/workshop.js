@@ -24,7 +24,7 @@ export default function workshop(el, _p, id) {
 
   function refresh() {
     const b = cur(), n = Object.keys(b.slots).length, d = DEVICES[b.type], prem = isPremium();
-    $('#ws-sub').textContent = `${d.name} · ${n}/${total} terpasang${b.status === 'done' ? ' · SELESAI, siap diuji (Testing Center: Fase 3)' : ''}`;
+    $('#ws-sub').textContent = `${d.name} · ${n}/${total} terpasang${b.status === 'done' ? ' · SELESAI, siap diuji di Testing Center' : ''}`;
     $('#ws-bar').style.width = (n / total * 100) + '%';
     const sel = selected && b.slots[selected] ? compOf(b.slots[selected]) : null;
     tray.innerHTML = (sel ? `<div class="card" style="margin-bottom:10px;border-color:var(--accent)"><div class="muted small">Dipilih</div><b>${esc(sel.name)}</b>
@@ -44,7 +44,7 @@ export default function workshop(el, _p, id) {
     const b = cur(), r = checkInstall(b, comp, isPremium());
     if (!r.ok) return toast(r.reason, 'bad');
     setState(st => ({
-      builds: st.builds.map(x => { if (x.id !== id) return x; const slots = { ...x.slots, [comp.type]: comp.id }; return { ...x, slots, status: Object.keys(slots).length === total ? 'done' : 'assembling' }; }),
+      builds: st.builds.map(x => { if (x.id !== id) return x; const slots = { ...x.slots, [comp.type]: comp.id }; return { ...x, slots, status: Object.keys(slots).length === total ? 'done' : 'assembling', test: undefined }; }),
       inventory: (() => { const inv = { ...st.inventory }; if (inv[comp.id] > 0) { inv[comp.id]--; if (!inv[comp.id]) delete inv[comp.id]; } return inv; })(),
     }));
     asm?.addPart(comp.type, comp.tier, true); open.delete(comp.type);
@@ -54,7 +54,7 @@ export default function workshop(el, _p, id) {
     const b = cur(), r = checkRemove(b, slot); if (!r.ok) return toast(r.reason, 'bad');
     const c = compOf(b.slots[slot]); if (!c) return;
     setState(st => ({
-      builds: st.builds.map(x => { if (x.id !== id) return x; const slots = { ...x.slots }; delete slots[slot]; return { ...x, slots, status: 'assembling' }; }),
+      builds: st.builds.map(x => { if (x.id !== id) return x; const slots = { ...x.slots }; delete slots[slot]; return { ...x, slots, status: 'assembling', test: undefined }; }),
       inventory: { ...st.inventory, [c.id]: (st.inventory[c.id] || 0) + 1 },
     }));
     asm?.removePart(slot, true); if (selected === slot) { selected = null; asm?.setSelected(null); }

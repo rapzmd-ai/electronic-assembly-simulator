@@ -7,11 +7,12 @@ import products from './pages/products.js';
 import premium from './pages/premium.js';
 import profile from './pages/profile.js';
 import settings, { applySettings } from './pages/settings.js';
+import testing from './pages/testing.js';
 import phase from './pages/phase.js';
 const ROUTES = [
   ['', 'Dashboard', '◧', dashboard], ['devices', 'Device Selection', '▣', devices], ['inventory', 'Component Inventory', '▤', inventory],
   ['workshop', '3D Assembly Workshop', '⬡', workshop],
-  ['testing', 'Testing Center', '◎', phase('Testing Center', 'Fase 3', ['Power On, BIOS, Boot', 'Suhu & benchmark CPU/GPU', 'Tes RAM, storage, display, baterai'])],
+  ['testing', 'Testing Center', '◎', testing],
   ['store', 'Electronics Store', '◈', phase('Electronics Store', 'Fase 4', ['Smartphone / Computer / Laptop / Electronics Store', 'Penawaran harga & penilaian', 'Riwayat transaksi'])],
   ['products', 'My Products', '▥', products], ['premium', 'Premium Membership', '★', premium], ['profile', 'Profile', '◉', profile], ['settings', 'Settings', '⚙', settings],
 ];

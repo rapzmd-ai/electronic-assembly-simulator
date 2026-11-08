@@ -1,5 +1,6 @@
 // Database komponen. tier: 'free' | 'premium'. devices: perangkat yang bisa memakai.
-const L = (type, devices, items) => items.map(([name, tier, specs], i) => ({ id: `${type}-${i+1}`, type, name, tier, specs, devices }));
+const seq = {}; // id harus unik per jenis walau komponen dibuat dalam beberapa grup
+const L = (type, devices, items) => items.map(([name, tier, specs]) => ({ id: `${type}-${seq[type] = (seq[type] || 0) + 1}`, type, name, tier, specs, devices }));
 const ALL = ['smartphone','laptop','pc','tablet','console','smartwatch'];
 export const COMPONENTS = [
   ...L('motherboard',['pc'],[
