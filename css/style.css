@@ -1,0 +1,26 @@
+:root{--bg:#0b0c0e;--panel:#131519;--panel2:#1a1d22;--line:#262a31;--text:#e8eaed;--muted:#8b919b;--accent:#3b82f6;--ok:#34d399;--warn:#fbbf24;--bad:#f87171}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--text);font:14px/1.5 Inter,system-ui,sans-serif}
+.app{display:flex;min-height:100vh}.sidebar{width:230px;background:var(--panel);border-right:1px solid var(--line);display:flex;flex-direction:column;padding:16px 12px;position:sticky;top:0;height:100vh;flex-shrink:0}
+.brand{display:flex;gap:10px;align-items:center;font-weight:600;line-height:1.15;padding:4px 8px 18px}.logo{background:var(--accent);color:#fff;font-size:12px;letter-spacing:.08em;padding:8px 7px;border-radius:6px}
+nav{display:flex;flex-direction:column;gap:2px;overflow:auto;flex:1}nav a{color:var(--muted);text-decoration:none;padding:8px 10px;border-radius:6px;display:flex;gap:10px;transition:.15s}
+nav a:hover{background:var(--panel2);color:var(--text)}nav a.on{background:rgba(59,130,246,.14);color:#fff}nav a i{font-style:normal;width:16px;text-align:center;opacity:.8}
+.side-foot{border-top:1px solid var(--line);padding:12px 8px 0}.bal{font-size:16px;font-weight:600;margin:2px 0 8px}
+.main{flex:1;min-width:0}.topbar{display:flex;align-items:center;gap:12px;padding:16px 24px;border-bottom:1px solid var(--line)}.topbar h1{font-size:18px;margin:0;font-weight:600}
+.view{padding:24px;max-width:1200px;animation:fade .25s}@keyframes fade{from{opacity:0;transform:translateY(4px)}}
+.icon-btn{display:none;background:none;border:1px solid var(--line);color:var(--text);border-radius:6px;padding:4px 10px;font-size:16px}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px}
+.card h3{margin:0 0 4px;font-size:15px}.muted{color:var(--muted)}.small{font-size:12px}.stat{font-size:24px;font-weight:600;margin-top:4px}
+.btn{background:var(--accent);color:#fff;border:0;border-radius:7px;padding:8px 14px;font:inherit;cursor:pointer;transition:.15s;text-decoration:none;display:inline-block}.btn:hover{filter:brightness(1.12)}
+.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--text)}.btn.ghost:hover{background:var(--panel2)}.btn.danger{background:transparent;border:1px solid #5b2a2a;color:var(--bad)}.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn.sm{padding:4px 10px;font-size:12px}.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.row.sp{justify-content:space-between}
+input,select{background:var(--panel2);border:1px solid var(--line);color:var(--text);border-radius:7px;padding:8px 10px;font:inherit}input:focus,select:focus{outline:1px solid var(--accent)}
+.pill{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;border:1px solid var(--line);color:var(--muted)}.pill.prem{color:#93c5fd;border-color:#1e3a8a}.pill.ok{color:var(--ok);border-color:#14532d}
+h2{font-size:15px;margin:26px 0 12px;font-weight:600}.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin-bottom:16px;flex-wrap:wrap}
+.tabs button{background:none;border:0;color:var(--muted);padding:8px 12px;cursor:pointer;font:inherit;border-bottom:2px solid transparent}.tabs button.on{color:#fff;border-color:var(--accent)}
+.bar{height:6px;background:var(--panel2);border-radius:9px;overflow:hidden}.bar i{display:block;height:100%;background:var(--accent);transition:width .3s}
+.spec{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}.spec span{font-size:11px;background:var(--panel2);padding:2px 7px;border-radius:5px;color:var(--muted)}
+.empty{border:1px dashed var(--line);border-radius:10px;padding:32px;text-align:center;color:var(--muted)}
+.slot{display:flex;justify-content:space-between;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--panel)}
+#toasts{position:fixed;right:16px;bottom:16px;display:flex;flex-direction:column;gap:8px;z-index:50}.toast{background:var(--panel2);border:1px solid var(--line);padding:10px 14px;border-radius:8px;animation:fade .2s}.toast.ok{border-color:#14532d}.toast.bad{border-color:#5b2a2a}
+.scrim{display:none}
+@media(max-width:800px){.sidebar{position:fixed;z-index:30;left:-250px;transition:.2s;width:230px}.sidebar.open{left:0}.icon-btn{display:block}.view{padding:16px}.scrim.on{display:block;position:fixed;inset:0;background:#0008;z-index:20}}
