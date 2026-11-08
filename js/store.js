@@ -2,7 +2,7 @@
 const KEY = 'eas-state-v1';
 const DEFAULT = {
   balance: 10_000_000, premiumUntil: 0, inventory: {}, builds: [], sales: [],
-  profile: { name: 'Perakit', joined: Date.now() }, settings: { sound: false, compact: false, accent: '#3b82f6' },
+  profile: { name: 'Perakit', joined: Date.now() }, settings: { compact: false, accent: '#3b82f6', quality: 'high' }, premiumLog: [], premiumNotified: true,
 };
 let state = load();
 const subs = new Set();
@@ -25,4 +25,12 @@ export const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&l
 export function toast(msg, kind = 'info') {
   const el = document.createElement('div'); el.className = 'toast ' + kind; el.textContent = msg;
   document.getElementById('toasts').appendChild(el); setTimeout(() => el.remove(), 3000);
+}
+export const exportData = () => JSON.stringify(state, null, 1);
+export function importData(text) {
+  const d = JSON.parse(text);
+  if (typeof d !== 'object' || !Array.isArray(d.builds) || typeof d.balance !== 'number') throw new Error('Format file tidak valid');
+  state = { ...structuredClone(DEFAULT), ...d, profile: { ...DEFAULT.profile, ...d.profile }, settings: { ...DEFAULT.settings, ...d.settings } };
+  try { localStorage.setItem(KEY, JSON.stringify(state)); } catch {}
+  subs.forEach(f => f(state));
 }

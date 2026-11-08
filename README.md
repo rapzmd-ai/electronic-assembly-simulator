@@ -1,18 +1,22 @@
 # Electronic Assembly Simulator
 
-Simulator interaktif untuk merakit perangkat elektronik (HP, laptop, PC, tablet, konsol, smartwatch).
+Simulator interaktif untuk merakit perangkat elektronik (HP, laptop, PC, tablet, konsol, smartwatch), menguji, lalu menjualnya ke toko virtual.
 
-## Status
-- Fase 1 selesai: dashboard, navigasi, pemilihan perangkat, inventory, database komponen, Premium (simulasi), profil, pengaturan.
-- Fase 2: ruang kerja 3D (Three.js via CDN), drag-and-drop dari daftar ke titik pemasangan, animasi pasang/lepas, bongkar, progres, dan sistem kompatibilitas (socket, tipe RAM, slot storage, kapasitas PSU, urutan pemasangan, Premium).
-- Fase 3: Testing Center (Power On, BIOS, Boot, suhu, benchmark CPU/GPU, RAM, storage, display, baterai) dengan skor kualitas dan grade.
-- Fase 4: Electronics Store (4 toko, penilaian bintang, rincian penawaran, tawar-menawar, jual, saldo virtual, riwayat transaksi) dan halaman My Products.
-- Fase 5 (Premium rapi, responsif, optimasi, backup data) sedang dikerjakan.
-
-Catatan: Three.js dimuat dari jsDelivr (importmap di index.html), jadi butuh internet.
+## Fitur (Fase 1-5 selesai)
+- Dashboard, navigasi sidebar (responsif), 10 halaman.
+- Device Selection dan Component Inventory (sekitar 90 komponen, Free dan Premium).
+- 3D Assembly Workshop (Three.js via CDN): drag-and-drop ke titik pemasangan, animasi, bongkar, progres.
+- Kompatibilitas: socket, tipe RAM, slot storage, daya PSU, urutan pasang, kunci Premium.
+- Testing Center: Power On, BIOS, Boot, suhu, benchmark CPU/GPU, RAM, storage, display, baterai, skor kualitas dan grade.
+- Electronics Store: 4 toko, penilaian, tawar-menawar, jual, saldo virtual, riwayat transaksi. My Products.
+- Premium Rp50.000/30 hari (simulasi), riwayat, batal, notifikasi kedaluwarsa.
+- Data tersimpan di localStorage; ekspor/impor cadangan JSON; pengaturan kualitas grafis 3D.
 
 ## Menjalankan
 ```
 python3 -m http.server 8000
 ```
-Buka http://localhost:8000 (harus lewat server karena memakai ES modules).
+Buka http://localhost:8000 (wajib lewat server karena memakai ES modules). Ruang 3D memuat Three.js dari jsDelivr, jadi butuh internet dan WebGL.
+
+## Catatan teknis
+Dibuat tanpa build step (tanpa Vite/React/TS) karena lingkungan pengembangan tidak punya akses install paket. State memakai store kecil ala Zustand (js/store.js).

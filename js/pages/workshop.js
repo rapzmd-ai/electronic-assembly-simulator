@@ -94,7 +94,7 @@ export default function workshop(el, _p, id) {
     try {
       const THREE = await import('three'), { OrbitControls } = await import('three/addons/controls/OrbitControls.js');
       if (disposed) return;
-      asm = createAssembly(THREE, OrbitControls, cv, b0.type);
+      asm = createAssembly(THREE, OrbitControls, cv, b0.type, { quality: getState().settings.quality });
       asm.onPick = slot => { selected = slot; asm.setSelected(slot); refresh(); };
       asm.load(Object.entries(cur().slots).map(([s, cid]) => [s, compOf(cid)?.tier]));
       $('#ws-load')?.remove();

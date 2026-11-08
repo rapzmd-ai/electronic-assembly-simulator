@@ -1,4 +1,4 @@
-import { getState, subscribe, rupiah, isPremium } from './store.js';
+import { getState, setState, subscribe, rupiah, isPremium, toast } from './store.js';
 import dashboard from './pages/dashboard.js';
 import devices from './pages/devices.js';
 import inventory from './pages/inventory.js';
@@ -34,3 +34,10 @@ function side() { document.getElementById('side-balance').textContent = rupiah(g
 document.getElementById('menu').onclick = () => { sb.classList.toggle('open'); scrim.classList.toggle('on'); };
 scrim.onclick = () => { sb.classList.remove('open'); scrim.classList.remove('on'); };
 subscribe(side); window.addEventListener('hashchange', render); applySettings(); side(); render();
+function checkPremiumExpiry() {
+  const s = getState();
+  if (s.premiumUntil && s.premiumUntil <= Date.now() && !s.premiumNotified) { setState({ premiumNotified: true }); toast('Premium berakhir. Komponen Premium terkunci untuk rakitan baru.', 'bad'); }
+  else if (isPremium() && s.premiumNotified) setState({ premiumNotified: false });
+  side();
+}
+checkPremiumExpiry(); setInterval(checkPremiumExpiry, 60000);

@@ -10,12 +10,12 @@ const COLOR = { motherboard: 0x1f6f4a, chipset: 0x2a2f3a, cpu: 0x2a2f3a, gpu: 0x
 const MODE = { idle: [0x4b5563, .55], dim: [0x4b5563, .18], target: [0x3b82f6, .9], ok: [0x34d399, 1], bad: [0xf87171, 1] };
 const SNAP_PX = 85;
 
-export function createAssembly(THREE, OrbitControls, host, deviceKey) {
+export function createAssembly(THREE, OrbitControls, host, deviceKey, opts = {}) {
   const L = LAYOUTS[deviceKey], slotIds = DEVICES[deviceKey].slots.filter(s => L.slots[s]);
   const scene = new THREE.Scene(); scene.background = new THREE.Color(0x0b0c0e);
   const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 300);
-  const renderer = new THREE.WebGLRenderer({ antialias: true });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  const renderer = new THREE.WebGLRenderer({ antialias: opts.quality !== 'low', powerPreference: 'low-power' });
+  renderer.setPixelRatio(opts.quality === 'low' ? 1 : Math.min(window.devicePixelRatio || 1, 2));
   const cv = renderer.domElement; cv.style.cssText = 'display:block;width:100%;height:100%;touch-action:none';
   host.appendChild(cv);
   scene.add(new THREE.AmbientLight(0xffffff, .75));
