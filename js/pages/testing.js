@@ -79,7 +79,7 @@ export default function testing(el) {
     el.innerHTML = `<div class="row sp" style="margin-bottom:14px"><select id="sel">${bs.map(x => `<option value="${x.id}" ${x.id === selected ? 'selected' : ''}>${esc(x.name)} (${DEVICES[x.type].name})</option>`).join('')}</select>
       <div class="row"><button class="btn" id="all" ${busy ? 'disabled' : ''}>Jalankan semua</button><button class="btn ghost" id="rst" ${busy || !done ? 'disabled' : ''}>Reset hasil</button></div></div>
     <div class="muted small" style="margin-bottom:6px">${done}/${list.length} pengujian selesai</div><div class="bar" style="margin-bottom:16px"><i style="width:${done / list.length * 100}%"></i></div>
-    ${t.quality !== undefined ? `<div class="card" style="margin-bottom:16px"><div class="row sp"><div><div class="muted small">Kualitas produk</div><div class="stat">${t.quality}/100 · Grade ${t.grade}</div></div><a class="btn ghost sm" href="#/store">Jual (Fase 4)</a></div>
+    ${t.quality !== undefined ? `<div class="card" style="margin-bottom:16px"><div class="row sp"><div><div class="muted small">Kualitas produk</div><div class="stat">${t.quality}/100 · Grade ${t.grade}</div></div><a class="btn ghost sm" href="#/store">Jual produk</a></div>
       ${t.notes?.length ? `<ul class="muted small">${t.notes.map(n => `<li>${esc(n)}</li>`).join('')}</ul>` : '<div class="muted small">Tidak ada masalah ditemukan.</div>'}</div>` : ''}
     <div id="stage" style="margin-bottom:16px"></div>
     <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(300px,1fr))">${list.map(x => { const r = res[x.id], locked = x.id !== 'power' && !powered;

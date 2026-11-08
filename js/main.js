@@ -8,12 +8,12 @@ import premium from './pages/premium.js';
 import profile from './pages/profile.js';
 import settings, { applySettings } from './pages/settings.js';
 import testing from './pages/testing.js';
-import phase from './pages/phase.js';
+import shop from './pages/store.js';
 const ROUTES = [
   ['', 'Dashboard', '◧', dashboard], ['devices', 'Device Selection', '▣', devices], ['inventory', 'Component Inventory', '▤', inventory],
   ['workshop', '3D Assembly Workshop', '⬡', workshop],
   ['testing', 'Testing Center', '◎', testing],
-  ['store', 'Electronics Store', '◈', phase('Electronics Store', 'Fase 4', ['Smartphone / Computer / Laptop / Electronics Store', 'Penawaran harga & penilaian', 'Riwayat transaksi'])],
+  ['store', 'Electronics Store', '◈', shop],
   ['products', 'My Products', '▥', products], ['premium', 'Premium Membership', '★', premium], ['profile', 'Profile', '◉', profile], ['settings', 'Settings', '⚙', settings],
 ];
 const view = document.getElementById('view'), nav = document.getElementById('nav'), sb = document.getElementById('sidebar'), scrim = document.getElementById('scrim');

@@ -6,7 +6,8 @@ Simulator interaktif untuk merakit perangkat elektronik (HP, laptop, PC, tablet,
 - Fase 1 selesai: dashboard, navigasi, pemilihan perangkat, inventory, database komponen, Premium (simulasi), profil, pengaturan.
 - Fase 2: ruang kerja 3D (Three.js via CDN), drag-and-drop dari daftar ke titik pemasangan, animasi pasang/lepas, bongkar, progres, dan sistem kompatibilitas (socket, tipe RAM, slot storage, kapasitas PSU, urutan pemasangan, Premium).
 - Fase 3: Testing Center (Power On, BIOS, Boot, suhu, benchmark CPU/GPU, RAM, storage, display, baterai) dengan skor kualitas dan grade.
-- Fase 4-5 (toko, penjualan, optimasi) belum dibangun.
+- Fase 4: Electronics Store (4 toko, penilaian bintang, rincian penawaran, tawar-menawar, jual, saldo virtual, riwayat transaksi) dan halaman My Products.
+- Fase 5 (Premium rapi, responsif, optimasi, backup data) sedang dikerjakan.
 
 Catatan: Three.js dimuat dari jsDelivr (importmap di index.html), jadi butuh internet.
 
