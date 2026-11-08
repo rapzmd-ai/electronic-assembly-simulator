@@ -17,13 +17,15 @@ const ROUTES = [
 ];
 const view = document.getElementById('view'), nav = document.getElementById('nav'), sb = document.getElementById('sidebar'), scrim = document.getElementById('scrim');
 nav.innerHTML = ROUTES.map(r => `<a href="#/${r[0]}" data-r="${r[0]}"><i>${r[2]}</i>${r[1]}</a>`).join('');
+let cleanup = null;
 function render() {
+  if (typeof cleanup === 'function') { try { cleanup(); } catch (e) { console.error(e); } } cleanup = null;
   const [path, ...rest] = location.hash.replace(/^#\/?/, '').split('?')[0].split('/');
   const params = new URLSearchParams(location.hash.split('?')[1] || '');
   const r = ROUTES.find(x => x[0] === path) || ROUTES[0];
   document.getElementById('title').textContent = r[1];
   nav.querySelectorAll('a').forEach(a => a.classList.toggle('on', a.dataset.r === r[0]));
-  try { r[3](view, params, rest[0]); } catch (e) { view.innerHTML = `<div class="empty">Terjadi error: ${e.message}</div>`; console.error(e); }
+  try { const out = r[3](view, params, rest[0]); if (typeof out === 'function') cleanup = out; } catch (e) { view.innerHTML = `<div class="empty">Terjadi error: ${e.message}</div>`; console.error(e); }
   sb.classList.remove('open'); scrim.classList.remove('on');
 }
 function side() { document.getElementById('side-balance').textContent = rupiah(getState().balance);
